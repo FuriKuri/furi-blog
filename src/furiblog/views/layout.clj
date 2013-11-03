@@ -4,6 +4,6 @@
 (defn common [& body]
   (html5
     [:head
-     [:title "Welcome to furiblog"]
+     [:title "Welcome to FuriKuri's Blog"]
      (include-css "/css/screen.css")]
     [:body body]))

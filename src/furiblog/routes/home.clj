@@ -3,16 +3,29 @@
             [furiblog.views.layout :as layout]
             [furiblog.models.mongo :as mongo]))
 
+(defn format-time [timestamp]
+  (-> "dd/MM/yyyy"
+      (java.text.SimpleDateFormat.)
+      (.format timestamp)))
+
+(defn format-tags [tags]
+  (reduce
+   #(str %1 ", " %2)
+   (map
+    #(str "\"" %1 "\"")
+    tags)))
+
 (defn show-posts []
-  [:ul.guests
-   (for [{:keys [title content timestamp]} (mongo/read-posts)]
-     [:li
-      [:blockquote title]
-      [:p "-" [:cite content]]])])
+  [:div.content
+   (for [{:keys [title content date tags]} (mongo/read-posts)]
+     [:div
+      [:h2 title]
+      [:p [:cite content]]
+      [:p "{ date: \"" (format-time date) "\", tags: [" (format-tags tags) "] }"]])])
 
 (defn home []
   (layout/common
-   [:h1 "Hello World!"]
+   [:h1 "{ blog: \"FuriKuri\" }"]
    (show-posts)))
 
 (defroutes home-routes
