@@ -21,7 +21,7 @@
      [:div
       [:hr]
       [:h2 title]
-      [:p [:cite content]]
+      [:p.post-content content]
       [:p.post-footer "{ date: \"" (format-time date) "\", tags: [" (format-tags tags) "] }"]])])
 
 (defn home []
