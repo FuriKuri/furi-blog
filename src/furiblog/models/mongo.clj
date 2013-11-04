@@ -8,7 +8,8 @@
         default "mongodb://localhost"]
     (first (remove nil? [env prop default]))))
 
+(mg/connect-via-uri! (mongo-uri))
+
 (defn read-posts []
-  (mg/connect-via-uri! (mongo-uri))
   (mc/find-maps "posts"))
 
