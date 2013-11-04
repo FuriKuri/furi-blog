@@ -1,7 +1,7 @@
 (ns furiblog.models.mongo
   (:require [monger.core :as mg]
-            [monger.collection :as mc])
-  (:use [monger.query :as q]))
+            [monger.collection :as mc]
+            [monger.query :as q]))
 
 (defn mongo-uri []
   (let [env (System/getenv "MONGO_URI")
