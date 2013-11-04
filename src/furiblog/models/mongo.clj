@@ -1,6 +1,7 @@
 (ns furiblog.models.mongo
   (:require [monger.core :as mg]
-            [monger.collection :as mc]))
+            [monger.collection :as mc])
+  (:use [monger.query :as q]))
 
 (defn mongo-uri []
   (let [env (System/getenv "MONGO_URI")
@@ -10,11 +11,17 @@
 
 (def connected (ref false))
 
+(defn init-mongo []
+  (do
+    (mg/connect-via-uri! (mongo-uri))
+    (dosync
+     (ref-set connected true))))
+
 (defn read-posts []
   (if-not (= @connected true)
-    (do
-      (mg/connect-via-uri! (mongo-uri))
-      (dosync
-       (ref-set connected true))))
-  (mc/find-maps "posts"))
+    (init-mongo))
+  (q/with-collection "posts"
+    (q/skip 0)
+    (q/limit 10)
+    (q/sort (sorted-map :date -1))))
 
