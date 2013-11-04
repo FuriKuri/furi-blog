@@ -13,3 +13,12 @@ h1 {
   margin-right: auto ;
 }
 
+code {
+  font-family: 'Menlo', "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  font-size: 0.8em;
+}
+
+.post-footer {
+  font-size: 0.7em;
+}
+

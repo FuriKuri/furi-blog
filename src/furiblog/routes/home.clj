@@ -19,9 +19,10 @@
   [:div.content
    (for [{:keys [title content date tags]} (mongo/read-posts)]
      [:div
+      [:hr]
       [:h2 title]
       [:p [:cite content]]
-      [:p "{ date: \"" (format-time date) "\", tags: [" (format-tags tags) "] }"]])])
+      [:p.post-footer "{ date: \"" (format-time date) "\", tags: [" (format-tags tags) "] }"]])])
 
 (defn home []
   (layout/common
