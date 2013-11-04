@@ -8,8 +8,13 @@
         default "mongodb://localhost"]
     (first (remove nil? [env prop default]))))
 
-(mg/connect-via-uri! (mongo-uri))
+(def connected (ref false))
 
 (defn read-posts []
+  (if-not (= @connected true)
+    (do
+      (mg/connect-via-uri! (mongo-uri))
+      (dosync
+       (ref-set connected true))))
   (mc/find-maps "posts"))
 
