@@ -1,6 +1,10 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
+
+
 body {
   color: #555;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 h1 {
@@ -14,7 +18,7 @@ h1 {
 }
 
 code {
-  font-family: 'Menlo', "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  font-family: 'Source Code Pro', 'Menlo', "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
   font-size: 0.8em;
 }
 
